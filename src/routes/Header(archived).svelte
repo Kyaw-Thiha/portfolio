@@ -2,71 +2,59 @@
 	import { page } from '$app/stores';
 	import logo from '$lib/images/svelte-logo.svg';
 	import github from '$lib/images/github.svg';
-	import MyButton from '$lib/components/myButton.svelte';
 </script>
 
 <header>
-	<div class="logo">
-		<a href="/">
-			<!-- <img src={logo} alt="SvelteKit" /> -->
-			Kevin @ Kyaw Thiha
+	<div class="corner">
+		<a href="https://kit.svelte.dev">
+			<img src={logo} alt="SvelteKit" />
 		</a>
 	</div>
 
-	<nav />
+	<nav>
+		<svg viewBox="0 0 2 3" aria-hidden="true">
+			<path d="M0,0 L1,2 C1.5,3 1.5,3 2,3 L2,0 Z" />
+		</svg>
+		<ul>
+			<li aria-current={$page.url.pathname === '/' ? 'page' : undefined}>
+				<a href="/">Home</a>
+			</li>
+			<li aria-current={$page.url.pathname === '/about' ? 'page' : undefined}>
+				<a href="/about">About</a>
+			</li>
+			<li aria-current={$page.url.pathname.startsWith('/sverdle') ? 'page' : undefined}>
+				<a href="/sverdle">Sverdle</a>
+			</li>
+		</ul>
+		<svg viewBox="0 0 2 3" aria-hidden="true">
+			<path d="M0,0 L0,3 C0.5,3 0.5,3 1,2 L2,0 Z" />
+		</svg>
+	</nav>
 
 	<div class="corner">
-		<div class="btn">
-			<a href="/#projects">
-				<MyButton text="Projects" />
-			</a>
-		</div>
+		<a href="https://github.com/sveltejs/kit">
+			<img src={github} alt="GitHub" />
+		</a>
 	</div>
 </header>
 
-<style scoped class="scss">
+<style>
 	header {
 		display: flex;
 		justify-content: space-between;
 	}
 
-	header::before {
-		backdrop-filter: blur(10px);
-	}
-
 	.corner {
-		/* min-width: 300px; */
+		width: 3em;
 		height: 3em;
-	}
-
-	.btn {
-		margin: 20px 10px 0 0;
-	}
-
-	.logo {
-		margin: 20px 0 0 10px;
-	}
-
-	.logo a {
-		color: black;
-		padding: 8px 12px;
-		border-radius: 5px;
-		text-decoration: none;
-		transition: 0.4s;
-	}
-
-	.logo a:hover {
-		background-color: black;
-		color: #fff;
 	}
 
 	.corner a {
 		display: flex;
-		justify-content: right;
+		align-items: center;
+		justify-content: center;
 		width: 100%;
 		height: 100%;
-		margin: 0 10px 10px 0;
-		text-decoration: none;
 	}
 
 	.corner img {
