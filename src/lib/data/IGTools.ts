@@ -2,7 +2,7 @@ import { Project } from '$lib/data/models';
 
 export const IGTools = new Project(
 	'IGTools',
-	'/images/IGTools.png',
+	'/images/IGTools/IGTools.png',
 	'Past Paper and Helper Tools for IGCSE',
 	'https://kyaw-thiha.github.io/IGtools/',
 	`<h2>Description</h2>
@@ -21,6 +21,7 @@ export const IGTools = new Project(
      
      <h2>Feature Details</h2>
      <h3>Past Papers</h3>
+     <img src="/images/IGTools/IGTools-PastPaper.png" alt="Past Paper"/>
      <p>
          The main aim of this feature was to simplify the process of browsing past papers. 
         Most paperpaper websites at that time were filled with ads and the 'raw' paper codes were hard to understand and navigate. <br/>
@@ -30,6 +31,7 @@ export const IGTools = new Project(
         just loop and render them. Thus, it was very time-consuming and exhausting for me but at least I got it done.
      </p>
      <h3>Business Key Term Practice</h3>
+     <img src="/images/IGTools/IGTools-BSKeyTerms.png" alt="Past Paper"/>
      <p>
          The feature's purpose was to allow students to practise their business studies definitions. 
         It was achieved by allowing students to enter the key terms and programmatically check if the student was correct or not. <br/>
@@ -37,6 +39,7 @@ export const IGTools = new Project(
         Remarkably, this was most likely my first time using javascript.
      </p>
      <h3>Computer Science Pre-Release</h3>
+     <img src="/images/IGTools/IGTools-CSPreRelease.png" alt="Past Paper"/>
      <p>
          This feature helped students obtain past paper pre-release solutions. Pre-release materials were IGCSE computer science practical questions that asked 
         the student to program given tasks. The question was given out ahead for students to prepare before exam and thus, is called pre-release. <br/>
