@@ -103,6 +103,7 @@
 
 			.project-card {
 				width: 50%;
+				margin-top: 50px;
 
 				.project-card-container {
 					display: flex;

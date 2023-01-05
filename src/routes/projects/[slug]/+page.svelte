@@ -74,6 +74,10 @@
 			font-weight: 300;
 		}
 
+		.project-detail > :global(ul li) {
+			margin: 10px 0;
+		}
+
 		.project-detail > :global(img) {
 			max-width: 800px;
 			max-height: 400px;
