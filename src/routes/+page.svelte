@@ -124,6 +124,7 @@
 
 				img {
 					width: 300px;
+					max-height: 250px;
 				}
 
 				h4 {

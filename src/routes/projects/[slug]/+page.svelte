@@ -42,7 +42,8 @@
 			justify-content: center;
 
 			img {
-				width: 700px;
+				max-width: 700px;
+				max-height: 450px;
 				border-radius: 25px;
 			}
 		}
