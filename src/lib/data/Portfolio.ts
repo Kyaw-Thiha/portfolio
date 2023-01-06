@@ -7,7 +7,7 @@ export const Portfolio = new Project(
 	'/',
 	`<h2>Description</h2>
     <p>
-        This is my portfolio website I made within about 3 days. I made it with an intention of digitalising all my previous projects
+        This is my portfolio website I designed in the first week of January 2023. I made it with an intention of digitalising all my previous projects
         and showcasing them for future references. 
      </p>
 
