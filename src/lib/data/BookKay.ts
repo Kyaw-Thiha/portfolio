@@ -94,11 +94,11 @@ export const BookKay = new Project(
          I started this project with a real intention of making this a real-world website that would be able to encourage young people 
          to spend more of their time writing and reading. <br/>
          However, as I worked more and more, I noticed the lack of interest garnered by my project, so I ended up carrying out a
-         product/market analysis and that was when I found ou that my website value proposition was weak compared to major players
+         product/market analysis and that was when I found of that my website value proposition was weak compared to major players
          in the market like Wattpad. <br/> 
          I also learned about the importance of planning out designs ahead as the lack of planning delays my efforts by quite a huge 
          margin. <br/>
-         Nonetheless, I gave me invaluable experience of fully developing a real-world website from scratch and it is these experiences
+         Nonetheless, it gave me invaluable experience of fully developing a real-world website from scratch and it is these experiences
          that further enable me to make better decisions in my future projects.
      </p>
      `,
