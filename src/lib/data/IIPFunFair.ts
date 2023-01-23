@@ -3,7 +3,7 @@ import { Project } from '$lib/data/models';
 export const IIPFunFair = new Project(
 	'IIP Fun Fair',
 	'/images/IIPFunFair/IIPFunFair.png',
-	'Past Paper and Helper Tools for IGCSE',
+	'School Fun Fair Website',
 	'https://iip-funfair.onrender.com/',
 	`<h2>Description</h2>
     <p>
