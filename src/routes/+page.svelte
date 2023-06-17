@@ -15,7 +15,7 @@
 
 <svelte:head>
 	<title>Kyaw Thiha</title>
-	<meta name="description" content="Svelte demo app" />
+	<meta name="description" content="Portfolio Website of Kyaw Thiha @ Kevin" />
 </svelte:head>
 
 <section class="hero">
