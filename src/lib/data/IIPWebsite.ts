@@ -2,7 +2,7 @@ import { Project } from '$lib/data/models';
 
 export const IIPWebsite = new Project(
 	'IIP Website',
-	'/images/IIPFunFair/IIPFunFair.png',
+	'/images/IIPWebsite/IIPWebsite.png',
 	'School Website',
 	'https://iip-website.vercel.app/',
 	`<h2>Description</h2>
@@ -23,11 +23,12 @@ export const IIPWebsite = new Project(
         The UI styling was empowered with tailwind classes which allowed us to quickly iterate on different designs. 
         More advanced UI in the alumni page was built using shadcn/ui design. <br/>
      </p>
-     <img src="/images/IIPFunFair/IIPFunFair-Figma.png"/>
      
      <h2>Planning & Collaboration</h2>
      <h3>Wireframing on Figma</h3>
-     <img src="/images/IIPFunFair/IIPFunFair-Carousal.png" alt="Past Paper"/>
+     <img src="/images/IIPWebsite/IIPWebsite-Figma_1.png" alt="Figma-1"/>
+     <img src="/images/IIPWebsite/IIPWebsite-Figma_2.png" alt="Figma-2"/>
+     <img src="/images/IIPWebsite/IIPWebsite-Figma_3.png" alt="Figma-3"/>
      <p>
         Collaboration with different people meant that it was necessary to design the individual pages on Figma before
         coding it. 
@@ -38,7 +39,7 @@ export const IIPWebsite = new Project(
 
      <h3>Collaboration</h3>
      <h4>Discord</h4>
-     <img src="/images/IIPFunFair/IIPFunFair-ProductDetail.png" alt="Product Detail"/>
+     <img src="/images/IIPWebsite/IIPWebsite-Discord.png" alt="Discord"/>
      <p>
         To ensure that the communication between team members was streamlined and everyone was on the same page,
         we decided on creating a discord server where we would share resources and make announcements as to who
@@ -48,7 +49,7 @@ export const IIPWebsite = new Project(
      </p>
 
      <h4>Notion</h4>
-     <img src="/images/IIPFunFair/IIPFunFair-ProductDetail.png" alt="Product Detail"/>
+     <img src="/images/IIPWebsite/IIPWebsite-Notion.png" alt="Notion"/>
      <p>
         Being a de facto project lead, it was necessary for me to plan out and delegate tasks for each team members.
         Thus, I decided to rely on Notion in order to jot down the long-term goals before splitting them into
@@ -56,7 +57,6 @@ export const IIPWebsite = new Project(
      </p>
 
      <h4>Code Collaboration</h4>
-     <img src="/images/IIPFunFair/IIPFunFair-ProductDetail.png" alt="Product Detail"/>
      <p>
         This code collaboration was proven to be the most difficult challenge we faced collaborating through github 
         branches was technically too complex for the team members.
@@ -66,22 +66,19 @@ export const IIPWebsite = new Project(
      
      <h2>Page Highlights</h2>
      <h3>Home Page</h3>
-     <img src="/images/IIPFunFair/IIPFunFair-Preorder.png" alt="Register"/>
+     <img src="/images/IIPWebsite/IIPWebsite-Home_1.png" alt="Home Page-1"/>
+     <img src="/images/IIPWebsite/IIPWebsite-Home_2.png" alt="Home Page-2"/>
      <p>
         The home page where users are linked to all essential pages.
      </p>
 
      <h3>Alumni Page</h3>
-     <img src="/images/IIPFunFair/IIPFunFair-Preorder.png" alt="Register"/>
-     <p>
-        Displays the list of alumni from the server and, allows full-text searching and filtering.
-     </p>
+     <img src="/images/IIPWebsite/IIPWebsite-Alumni.png" alt="Alumni"/>
 
      <h3>Our Team Page</h3>
-     <img src="/images/IIPFunFair/IIPFunFair-Preorder.png" alt="Register"/>
-     <p>
-        Displays the names and images of the team members who worked on this website
-     </p>
+     <img src="/images/IIPWebsite/IIPWebsite-OurTeam_1.png" alt="Our Team-1"/>
+     <img src="/images/IIPWebsite/IIPWebsite-OurTeam_2.png" alt="Our Team-2"/>
+     <img src="/images/IIPWebsite/IIPWebsite-OurTeam_3.png" alt="Our Team-3"/>
 
      <h2>Lessons Learned</h2>
      <p>
