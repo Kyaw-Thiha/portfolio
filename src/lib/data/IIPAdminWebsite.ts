@@ -2,7 +2,7 @@ import { Project } from '$lib/data/models';
 
 export const IIPAdminWebsite = new Project(
 	'IIP Admin Website',
-	'/images/IIPFunFair/IIPFunFair.png',
+	'/images/IIPAdminWebsite/IIPAdminWebsite.png',
 	'School Admin Website',
 	'https://iip-admin-website.vercel.app/',
 	`<h2>Description</h2>
@@ -23,20 +23,24 @@ export const IIPAdminWebsite = new Project(
          effortlessly accessed through the fully-typesafed prisma ORM. To interact with the database, the trpc framework 
          provided a secure and reliable means of communication.
      </p>
-     <img src="/images/IIPFunFair/IIPFunFair-Figma.png"/>
      
      <h2>Feature details</h2>
      <h3>Alumni</h3>
-     <img src="/images/IIPFunFair/IIPFunFair-Preorder.png" alt="Register"/>
-     <p>
-        The alumni and their classes can be added, edited and deleted.
-     </p>
+     <img src="/images/IIPAdminWebsite/IIPAdminWebsite-ALevelAlumni.png" alt="A-Level Alumni"/>
+     <img src="/images/IIPAdminWebsite/IIPAdminWebsite-IGCSEAlumni.png" alt="IGCSE Alumni"/>
+     <p> List of alumni </p>
+     <br/>
+     <img src="/images/IIPAdminWebsite/IIPAdminWebsite-EditALevelAlumni.png" alt="Editing A-Level Alumni"/>
+     <img src="/images/IIPAdminWebsite/IIPAdminWebsite-EditIGCSEAlumni.png" alt="Editing IGCSE Alumni"/>
+     <p> Alumni can be added, edited and deleted. </p>
+     <br/>
 
      <h3>Announcements</h3>
-     <img src="/images/IIPFunFair/IIPFunFair-Preorder.png" alt="Register"/>
-     <p>
-         The announcements can be added, edited and deleted.
-     </p>
+     <img src="/images/IIPAdminWebsite/IIPAdminWebsite-Announcements.png" alt="Register"/>
+
+     <h3>Users</h3>
+     <img src="/images/IIPAdminWebsite/IIPAdminWebsite-Users.png" alt="Register"/>
+     <img src="/images/IIPAdminWebsite/IIPAdminWebsite-EditUsers.png" alt="Register"/>
 
      <h2>Lessons Learned</h2>
      <p>
