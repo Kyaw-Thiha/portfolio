@@ -7,23 +7,17 @@ export const IIPWebsite = new Project(
 	'https://iip-website.vercel.app/',
 	`<h2>Description</h2>
      <p>
-        This was the first ever project where I led a team of my 7 friends to collaborate on designing and coding the website. 
-        Being a group project meant that I face several new challenges which I had to overcome. 
-        For instance, sharing codes proved quite difficult as collaborating through github branches was technically too
-        complex for the team members. Thus, we ended up using Visual Studio Live Share in conjunction with ngrok. <br/>
+     This was my inaugural group project where I took the helm as team leader, guiding a group of seven talented friends in 
+     a collaborative effort to design and code a captivating website. Embarking on a collective endeavor brought forth a 
+     range of novel challenges that required my problem-solving skills and resilience. 
+     Beyond the technical aspects, this project provided all eight of us with a valuable opportunity to learn programming 
+     and further develop our teamwork abilities. Particularly for those planning to pursue a computer science major in 
+     university, the real-world project experiences gained were invaluable. <br/>
      </p>
-
-     <p>The main features of the website were 
-     <ul>
-        <li>Browsing through products and shops</li>
-        <li>Registering shops</li>
-        <li>Preordering products</li>
-     </ul>
-     </p> 
 
      <h2>Technologies Used</h2>
      <p>
-        The website was decided to be coded using Astro.js as it allows team members with only basic html/css knowledge to
+        The website was coded using Astro.js as it allows team members with only basic html/css knowledge to
         comfortably collaborate while I could use more advanced frameworks like React by taking advantage of Astro's 
         island architecture. 
         The UI styling was empowered with tailwind classes which allowed us to quickly iterate on different designs. 

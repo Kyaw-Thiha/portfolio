@@ -6,7 +6,7 @@ export const IIPFunFair = new Project(
 	'School Fun Fair Website',
 	'https://iip-funfair.onrender.com/',
 	`<h2>Description</h2>
-    <p>
+      <p>
         This was an informational website for my school's Christmas fun fair which also accepted pre-orders for the shops that were
         sold by the students. It was made in December of 2022.<br/>
         Remarkably, I managed to finish this website within a span of about <b>5 days</b> and for the first time ever, had my project 
