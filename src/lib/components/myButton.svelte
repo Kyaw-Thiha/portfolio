@@ -21,7 +21,7 @@
 		border: 1px solid #081f2d;
 		color: white;
 		font-size: 20px;
-		padding: 8px 24px;
+		padding: 6px 18px;
 		cursor: pointer;
 		transition: 0.3s;
 
