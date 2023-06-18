@@ -5,9 +5,20 @@
 	export let data: PageData;
 </script>
 
+<svelte:head>
+	<title>Kyaw Thiha</title>
+	<meta name="description" content="Portfolio Website of Kyaw Thiha @ Kevin" />
+</svelte:head>
+
 <section class="project">
-	<h1>{data.project?.name}</h1>
-	<div class="img-container"><img src={data.project?.image} alt={data.project?.name} /></div>
+	<h1 class="mb-4 text-4xl md:mb-8 md:text-6xl ">{data.project?.name}</h1>
+	<div class="flex items-center justify-center">
+		<img
+			class="h-[350px] rounded-3xl object-cover md:object-contain"
+			src={data.project?.image}
+			alt={data.project?.name}
+		/>
+	</div>
 	<div class="btn-container">
 		<a href={data.project?.link} target="_blank" rel="noreferrer">
 			<MyButton text="Visit Website" />
@@ -32,7 +43,7 @@
 <style lang="scss" scoped>
 	.project {
 		h1 {
-			font-size: 64px;
+			// font-size: 64px;
 			font-weight: 600;
 		}
 
@@ -79,11 +90,16 @@
 		}
 
 		.project-detail > :global(img) {
-			max-width: 800px;
+			// max-width: 800px;
+			max-width: 100%;
 			max-height: 400px;
 			padding: 3px;
 			border-radius: 5px;
 			border: 3px solid black;
+		}
+
+		.project-detail > :global(section) {
+			margin-bottom: 12px;
 		}
 
 		.project-technologies {
