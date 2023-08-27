@@ -10,7 +10,7 @@ export const IIPFunFair = new Project(
         This was an informational website for my school's Christmas fun fair which also accepted pre-orders for the shops that were
         sold by the students. It was made in December of 2022.<br/>
         Remarkably, I managed to finish this website within a span of about <b>5 days</b> and for the first time ever, had my project 
-        being utilized in real life with over <b>270 users</b> registering by the day of the fun fair.
+        being utilized in real life with over <b>270 users</b> and <br>30 shops</br> registered by the day of the fun fair.
      </p>
 
      <p>The main features of the website were 
