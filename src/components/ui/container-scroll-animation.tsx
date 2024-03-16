@@ -41,7 +41,7 @@ export const ContainerScroll = ({
 
   return (
     <div
-      className="relative flex h-[60rem] items-center justify-center p-2 md:h-[80rem] md:p-20"
+      className="relative flex h-[60rem] items-center justify-center p-2  md:p-20"
       ref={containerRef}
     >
       <div
@@ -100,12 +100,14 @@ export const Card = ({
       }}
       className="mx-auto -mt-12 h-[30rem] w-full max-w-5xl rounded-[30px] border-4 border-[#6C6C6C] bg-[#222222] p-6 shadow-2xl md:h-[40rem]"
     >
-      <div className="h-full w-full gap-4 overflow-hidden rounded-2xl bg-gray-100 p-4">
-        <motion.img
-          style={{ translateY: translate }}
-          src={imgSrc}
-          alt="My Image"
-        />
+      <div className="flex h-full w-full items-start justify-center gap-4 overflow-hidden rounded-2xl bg-gray-100 p-4">
+        <div>
+          <motion.img
+            style={{ translateY: translate }}
+            src={imgSrc}
+            alt="My Image"
+          />{" "}
+        </div>
       </div>
     </motion.div>
   );
