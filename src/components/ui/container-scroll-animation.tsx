@@ -104,6 +104,7 @@ export const Card = ({
         <div>
           <motion.img
             style={{ translateY: translate }}
+            whileHover={{ scale: 1.1 }}
             src={imgSrc}
             alt="My Image"
           />
