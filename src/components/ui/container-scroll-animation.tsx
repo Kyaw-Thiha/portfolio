@@ -106,7 +106,7 @@ export const Card = ({
             style={{ translateY: translate }}
             src={imgSrc}
             alt="My Image"
-          />{" "}
+          />
         </div>
       </div>
     </motion.div>
