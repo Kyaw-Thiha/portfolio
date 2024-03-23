@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Hero } from "../components/home/hero";
+import { Hero } from "@/components/home/hero";
 import { AboutMe } from "@/components/home/about-me";
 import { Projects } from "@/components/home/projects";
 
