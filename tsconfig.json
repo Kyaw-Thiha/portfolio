@@ -9,7 +9,11 @@
     "moduleResolution": "Bundler",
     "resolveJsonModule": true,
     "target": "ES2022",
+    
+    /* Strictness */
     "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "checkJs": true,
     "allowJs": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
