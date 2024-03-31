@@ -1,7 +1,6 @@
 import { memo, useRef } from "react";
 import { ResolvedValues, motion, useMotionValue } from "framer-motion";
-// import { Link } from "react-router-dom";
-import { Link, useNavigate } from "@remix-run/react";
+import { Link, useNavigate } from "react-router-dom";
 import { useInvertedBorderRadius } from "@/utils/use-inverted-border-radius";
 import { ContentPlaceholder } from "./ContentPlaceholder";
 import { Title } from "./Title";
@@ -26,7 +25,7 @@ interface Props extends CardData {
 // a swipe-to dismiss action.
 const dismissDistance = 150;
 
-export const Card = memo(
+const Card = memo(
   ({
     isSelected,
     id,

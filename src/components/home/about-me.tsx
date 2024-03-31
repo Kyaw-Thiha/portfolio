@@ -1,8 +1,4 @@
-"use client";
-
-import { cn } from "@/utils/cn";
 import { motion } from "framer-motion";
-import React, { useState } from "react";
 import { BentoGrid, BentoGridItem } from "../ui/bento-grid";
 
 export function AboutMe() {

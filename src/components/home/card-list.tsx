@@ -1,6 +1,5 @@
 import { Card } from "@/components/ui/card";
-// import { BrowserRouter as Router, Route } from "react-router-dom";
-import { useSearchParams } from "@remix-run/react";
+import { useParams } from "react-router-dom";
 
 export interface CardData {
   id: string;
@@ -10,18 +9,13 @@ export interface CardData {
   backgroundColor: string;
 }
 export const List = () => {
-  const [searchParams] = useSearchParams();
-  searchParams.get("id");
+  const { projectId } = useParams();
 
   // Function to navtigate the routenavigaettenavigate.navigateethistory.push("/")nvavigatenavigate()""/
   return (
-    <ul className="card-list">
+    <ul className="card-list w-full">
       {cardData.map((card) => (
-        <Card
-          key={card.id}
-          isSelected={searchParams.get("id") === card.id}
-          {...card}
-        />
+        <Card key={card.id} isSelected={projectId === card.id} {...card} />
       ))}
     </ul>
   );
