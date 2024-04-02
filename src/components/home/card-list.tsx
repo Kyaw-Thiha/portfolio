@@ -1,4 +1,4 @@
-import { Card } from "@/components/ui/card";
+import Card from "@/components/ui/card";
 import { useParams } from "react-router-dom";
 
 export interface CardData {
@@ -9,13 +9,13 @@ export interface CardData {
   backgroundColor: string;
 }
 export const List = () => {
-  const { projectId } = useParams();
+  const { id } = useParams();
 
   // Function to navtigate the routenavigaettenavigate.navigateethistory.push("/")nvavigatenavigate()""/
   return (
     <ul className="card-list w-full">
       {cardData.map((card) => (
-        <Card key={card.id} isSelected={projectId === card.id} {...card} />
+        <Card key={card.id} isSelected={id === card.id} {...card} />
       ))}
     </ul>
   );

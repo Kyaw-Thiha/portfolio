@@ -17,11 +17,11 @@ export const Image = ({
 
   return (
     <motion.div
-      className="card-image-container"
+      className="card-image-container absolute left-0 top-0 h-[420px] w-screen overflow-hidden"
       style={{ ...inverted, backgroundColor, originX: 0, originY: 0 }}
     >
       <motion.img
-        className="card-image"
+        className="card-image h-auto"
         src={`images/${id}.png`}
         alt=""
         initial={false}
