@@ -1,7 +1,11 @@
 import { memo, useRef } from "react";
-import { ResolvedValues, motion, useMotionValue } from "framer-motion";
+import {
+  ResolvedValues,
+  motion,
+  useMotionValue,
+  useSpring,
+} from "framer-motion";
 import { Link, useNavigate } from "react-router-dom";
-import { useInvertedBorderRadius } from "@/utils/use-inverted-border-radius";
 import { ContentPlaceholder } from "./ContentPlaceholder";
 import { Title } from "./Title";
 import { Image } from "./Image";
@@ -35,14 +39,16 @@ const Card = memo(
     pointOfInterest,
     backgroundColor,
   }: Props) => {
-    const y = useMotionValue(0);
+    const val = useMotionValue(0);
     const zIndex = useMotionValue(isSelected ? 2 : 0);
+
+    const y = useSpring(val, { stiffness: 400, damping: 40 });
 
     // Function to navtigate the route
     const navigate = useNavigate();
 
     // Maintain the visual border radius when we perform the layoutTransition by inverting its scaleX/Y
-    const inverted = useInvertedBorderRadius(20);
+    // const inverted = useInvertedBorderRadius(20);
 
     // We'll use the opened card element to calculate the scroll constraints
     const cardRef = useRef(null);
@@ -85,10 +91,10 @@ const Card = memo(
           <motion.div
             ref={cardRef}
             className={cn(
-              "pointer-events-auto relative mx-0 my-auto h-full w-full overflow-hidden rounded-3xl bg-[#1c1c1e]",
+              "pointer-events-auto relative mx-0 my-auto h-full w-full overflow-hidden bg-[#1c1c1e]",
               isSelected && "fixed top-12 h-auto overflow-hidden",
             )}
-            style={{ ...inverted, zIndex, y }}
+            style={{ borderRadius: 24, zIndex, y }}
             layout
             transition={isSelected ? openSpring : closeSpring}
             drag={isSelected ? "y" : false}
@@ -96,20 +102,26 @@ const Card = memo(
             onDrag={checkSwipeToDismiss}
             onUpdate={checkZIndex}
           >
-            <Image
-              id={id}
-              isSelected={isSelected}
-              pointOfInterest={pointOfInterest}
-              backgroundColor={backgroundColor}
-            />
-            <Title title={title} category={category} isSelected={isSelected} />
-            <ContentPlaceholder />
+            <motion.div layout>
+              <Image
+                id={id}
+                isSelected={isSelected}
+                pointOfInterest={pointOfInterest}
+                backgroundColor={backgroundColor}
+              />
+              <Title
+                title={title}
+                category={category}
+                isSelected={isSelected}
+              />
+              <ContentPlaceholder />
+            </motion.div>
           </motion.div>
         </div>
         {!isSelected && (
           <Link
             to={`/projects/${id}`}
-            className="absolute bottom-0 left-0 right-0 top-0"
+            className="absolute bottom-0 left-0 right-0 top-0 z-10"
           />
         )}
       </li>

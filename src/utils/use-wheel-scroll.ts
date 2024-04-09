@@ -1,11 +1,10 @@
 import { RefObject } from "react";
 import { useDomEvent, MotionValue } from "framer-motion";
-import { spring } from "popmotion";
+import { animate, spring } from "popmotion";
 import { mix } from "@popmotion/popcorn";
 
 import pkg from "lodash";
 const { debounce } = pkg;
-//import { debounce } from "lodash";
 
 interface Constraints {
   top: number;
@@ -17,29 +16,52 @@ interface Constraints {
 const deltaThreshold = 5;
 
 // If wheel event fires beyond constraints, multiple the delta by this amount
-const elasticFactor = 0.2;
+// const elasticFactor = 0.2;
+const elasticFactor = 0.6;
 
 function springTo(value: MotionValue, from: number, to: number) {
   if (value.isAnimating()) return;
 
-  value.start((complete) => {
-    const animation = spring({
+  // value.start((complete) => {
+  //   const animation = spring({
+  //     from,
+  //     to,
+  //     velocity: value.getVelocity(),
+  //     stiffness: 400,
+  //     damping: 40,
+  //   }).start({
+  //     update: (v: number) => value.set(v),
+  //     complete,
+  //   });
+
+  //   return () => animation.stop();
+  // });
+
+  value.on("change", () => {
+    const animation = animate({
       from,
       to,
       velocity: value.getVelocity(),
       stiffness: 400,
       damping: 40,
-    }).start({
-      update: (v: number) => value.set(v),
-      complete,
+      type: "spring",
+      onUpdate(latest) {
+        if (latest == value.get()) {
+          value.set(latest);
+        }
+      },
     });
 
     return () => animation.stop();
   });
 }
 
-const debouncedSpringTo = debounce(springTo, 100);
+// const debouncedSpringTo = debounce(springTo, 100);
 
+const debouncedSpringTo = debounce(
+  (value: MotionValue, to: number) => value.set(to),
+  100,
+);
 /**
  * Re-implements wheel scroll for overlflow: hidden elements.
  *
@@ -84,19 +106,23 @@ export function useWheelScroll(
 
       if (newY < constraints.top) {
         if (event.deltaY <= deltaThreshold) {
-          springTo(y, newY, constraints.top);
+          // springTo(y, newY, constraints.top);
+          y.set(constraints.top);
           startedAnimation = true;
         } else {
-          debouncedSpringTo(y, newY, constraints.top);
+          // debouncedSpringTo(y, newY, constraints.top);
+          debouncedSpringTo(y, constraints.top);
         }
       }
 
       if (newY > constraints.bottom) {
         if (event.deltaY >= -deltaThreshold) {
-          springTo(y, newY, constraints.bottom);
+          // springTo(y, newY, constraints.bottom);
+          y.set(constraints.bottom);
           startedAnimation = true;
         } else {
-          debouncedSpringTo(y, newY, constraints.bottom);
+          // debouncedSpringTo(y, newY, constraints.bottom);
+          debouncedSpringTo(y, constraints.bottom);
         }
       }
     }
