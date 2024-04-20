@@ -1,28 +1,21 @@
-import { motion, useDeprecatedInvertedScale } from "framer-motion";
+import { motion } from "framer-motion";
 import { closeSpring } from "./animations";
+import { cn } from "@/utils/cn";
 
 interface ImageProps {
   id: string;
   isSelected: boolean;
   pointOfInterest: number;
-  backgroundColor: string;
 }
-export const Image = ({
-  id,
-  isSelected,
-  pointOfInterest = 0,
-  backgroundColor,
-}: ImageProps) => {
-  const inverted = useDeprecatedInvertedScale();
-
+export const Image = ({ id, isSelected, pointOfInterest = 0 }: ImageProps) => {
   return (
     <motion.div
-      className="card-image-container absolute left-0 top-0 h-[420px] w-screen overflow-hidden"
-      style={{ ...inverted, backgroundColor, originX: 0, originY: 0 }}
+      className=" left-0 top-0 flex w-screen overflow-hidden backdrop-blur-xl"
+      style={{ /*backgroundColor,*/ originX: 0, originY: 0 }}
     >
       <motion.img
-        className="card-image h-auto"
-        src={`images/${id}.png`}
+        className={cn("h-[480px] rounded-xl", isSelected && "mx-auto mt-4")}
+        src={`/images/${id}.png`}
         alt=""
         initial={false}
         animate={
