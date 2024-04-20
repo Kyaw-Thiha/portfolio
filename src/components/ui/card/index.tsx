@@ -1,4 +1,4 @@
-import { memo, useRef } from "react";
+import { memo, useEffect, useRef } from "react";
 import {
   ResolvedValues,
   motion,
@@ -13,10 +13,10 @@ import { openSpring, closeSpring } from "./animations";
 import { useScrollConstraints } from "@/utils/use-scroll-constraints";
 import { useWheelScroll } from "@/utils/use-wheel-scroll";
 import { cn } from "@/utils/cn";
+import { SquareChevronLeftIcon } from "lucide-react";
 
 export interface CardData {
   id: string;
-  category: string;
   title: string;
   pointOfInterest: number;
   backgroundColor: string;
@@ -31,16 +31,9 @@ interface Props extends CardData {
 const dismissDistance = 150;
 
 const Card = memo(
-  ({
-    isSelected,
-    id,
-    title,
-    category,
-    pointOfInterest,
-    backgroundColor,
-  }: Props) => {
+  ({ isSelected, id, title, pointOfInterest }: Props) => {
     const val = useMotionValue(0);
-    const zIndex = useMotionValue(isSelected ? 2 : 0);
+    // const zIndex = useMotionValue(isSelected ? 2 : 0);
 
     const y = useSpring(val, { stiffness: 400, damping: 40 });
 
@@ -54,19 +47,40 @@ const Card = memo(
     const cardRef = useRef(null);
     const constraints = useScrollConstraints(cardRef, isSelected);
 
+    const exitSelection = () => {
+      y.set(constraints.bottom);
+      isSelected = false;
+      navigate("/");
+    };
+
     function checkSwipeToDismiss() {
-      y.get() > dismissDistance && navigate("/");
-    }
-
-    function checkZIndex(latest: ResolvedValues) {
-      const scaleX = latest.scaleX as number;
-
-      if (isSelected) {
-        zIndex.set(2);
-      } else if (!isSelected && scaleX < 1.01) {
-        zIndex.set(0);
+      if (y.get() > dismissDistance) {
+        exitSelection();
       }
     }
+
+    useEffect(() => {
+      const handleEsc = (event) => {
+        if (event.key === "Escape") {
+          exitSelection();
+        }
+      };
+      window.addEventListener("keydown", handleEsc);
+
+      return () => {
+        window.removeEventListener("keydown", handleEsc);
+      };
+    }, []);
+
+    // function checkZIndex(latest: ResolvedValues) {
+    //   const scaleX = latest.scaleX as number;
+
+    //   if (isSelected) {
+    //     zIndex.set(20);
+    //   } else if (!isSelected && scaleX < 1.01) {
+    //     zIndex.set(0);
+    //   }
+    // }
 
     // When this card is selected, attach a wheel event listener
     const containerRef = useRef(null);
@@ -80,7 +94,7 @@ const Card = memo(
 
     return (
       <li ref={containerRef} className={`card`}>
-        <Overlay isSelected={isSelected} />
+        <Overlay isSelected={isSelected} onExit={exitSelection} />
         <div
           className={cn(
             "pointer-events-none relative block h-full w-full",
@@ -91,29 +105,32 @@ const Card = memo(
           <motion.div
             ref={cardRef}
             className={cn(
-              "pointer-events-auto relative mx-0 my-auto h-full w-full overflow-hidden bg-[#1c1c1e]",
-              isSelected && "fixed top-12 h-auto overflow-hidden",
+              "pointer-events-auto relative mx-0 my-auto h-full w-full overflow-hidden px-8 py-4 backdrop-blur-xl",
+              isSelected && "fixed top-12 z-20 h-auto overflow-hidden",
             )}
-            style={{ borderRadius: 24, zIndex, y }}
+            // bg-[#1c1c1e]
+            style={{ y }}
+            initial={{ borderRadius: 24 }}
             layout
             transition={isSelected ? openSpring : closeSpring}
             drag={isSelected ? "y" : false}
             dragConstraints={constraints}
             onDrag={checkSwipeToDismiss}
-            onUpdate={checkZIndex}
+            // onUpdate={checkZIndex}
           >
             <motion.div layout>
+              {isSelected && (
+                <SquareChevronLeftIcon
+                  className="fixed z-10 h-12 w-12 cursor-pointer text-white"
+                  onClick={() => exitSelection()}
+                />
+              )}
               <Image
                 id={id}
                 isSelected={isSelected}
                 pointOfInterest={pointOfInterest}
-                backgroundColor={backgroundColor}
               />
-              <Title
-                title={title}
-                category={category}
-                isSelected={isSelected}
-              />
+              <Title title={title} isSelected={isSelected} />
               <ContentPlaceholder />
             </motion.div>
           </motion.div>
@@ -121,7 +138,7 @@ const Card = memo(
         {!isSelected && (
           <Link
             to={`/projects/${id}`}
-            className="absolute bottom-0 left-0 right-0 top-0 z-10"
+            className="absolute bottom-0 left-0 right-0 top-0"
           />
         )}
       </li>
@@ -133,7 +150,11 @@ const Card = memo(
 Card.displayName = "Card";
 export default Card;
 
-const Overlay = ({ isSelected }: { isSelected: boolean }) => (
+interface OverlayInteface {
+  isSelected: boolean;
+  onExit: () => void;
+}
+const Overlay = ({ isSelected, onExit }: OverlayInteface) => (
   <motion.div
     initial={false}
     animate={{ opacity: isSelected ? 1 : 0 }}
@@ -143,6 +164,7 @@ const Overlay = ({ isSelected }: { isSelected: boolean }) => (
   >
     <Link
       to="/"
+      onClick={() => onExit()}
       className="fixed bottom-0 left-1/2 top-0 block w-full -translate-x-1/2"
     />
   </motion.div>

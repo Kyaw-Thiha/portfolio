@@ -17,7 +17,7 @@ const deltaThreshold = 5;
 
 // If wheel event fires beyond constraints, multiple the delta by this amount
 // const elasticFactor = 0.2;
-const elasticFactor = 0.6;
+const elasticFactor = 0.8;
 
 function springTo(value: MotionValue, from: number, to: number) {
   if (value.isAnimating()) return;
@@ -104,24 +104,22 @@ export function useWheelScroll(
     if (constraints && !isWithinBounds) {
       newY = mix(currentY, newY, elasticFactor);
 
+      // If user scrolls past the top constraint
       if (newY < constraints.top) {
         if (event.deltaY <= deltaThreshold) {
-          // springTo(y, newY, constraints.top);
           y.set(constraints.top);
           startedAnimation = true;
         } else {
-          // debouncedSpringTo(y, newY, constraints.top);
           debouncedSpringTo(y, constraints.top);
         }
       }
 
+      // If user scrolls under the bottom constrait
       if (newY > constraints.bottom) {
         if (event.deltaY >= -deltaThreshold) {
-          // springTo(y, newY, constraints.bottom);
           y.set(constraints.bottom);
           startedAnimation = true;
         } else {
-          // debouncedSpringTo(y, newY, constraints.bottom);
           debouncedSpringTo(y, constraints.bottom);
         }
       }

@@ -1,15 +1,10 @@
 import * as React from "react";
 // import { LoremIpsum } from "react-lorem-ipsum";
-import { motion, useDeprecatedInvertedScale } from "framer-motion";
+import { motion } from "framer-motion";
 
 export const ContentPlaceholder = React.memo(() => {
-  const inverted = useDeprecatedInvertedScale();
-
   return (
-    <motion.div
-      className="content-container"
-      style={{ ...inverted, originY: 0, originX: 0 }}
-    >
+    <motion.div className="text-white" style={{ originY: 0, originX: 0 }}>
       {/* <LoremIpsum p={6} avgWordsPerSentence={6} avgSentencesPerParagraph={4} /> */}
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua. Dignissim enim sit
