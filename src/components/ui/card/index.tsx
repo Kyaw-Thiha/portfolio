@@ -28,7 +28,7 @@ interface Props extends CardData {
 
 // Distance in pixels a user has to scroll a card down before we recognise
 // a swipe-to dismiss action.
-const dismissDistance = 150;
+const dismissDistance = 50;
 
 const Card = memo(
   ({ isSelected, id, title, pointOfInterest }: Props) => {
@@ -48,13 +48,15 @@ const Card = memo(
     const constraints = useScrollConstraints(cardRef, isSelected);
 
     const exitSelection = () => {
-      y.set(constraints.bottom);
       isSelected = false;
       navigate("/");
+      y.set(constraints.bottom);
     };
 
     function checkSwipeToDismiss() {
-      if (y.get() > dismissDistance) {
+      if (y.get() > constraints.bottom) {
+        exitSelection();
+      } else if (y.get() < constraints.top - dismissDistance) {
         exitSelection();
       }
     }
@@ -98,15 +100,14 @@ const Card = memo(
         <div
           className={cn(
             "pointer-events-none relative block h-full w-full",
-            isSelected &&
-              "fixed bottom-0 left-0 right-0 top-0 z-10 overflow-hidden ",
+            isSelected && "fixed bottom-0 left-0 right-0 top-0 z-10  ",
           )}
         >
           <motion.div
             ref={cardRef}
             className={cn(
               "pointer-events-auto relative mx-0 my-auto h-full w-full overflow-hidden px-8 py-4 backdrop-blur-xl",
-              isSelected && "fixed top-12 z-20 h-auto overflow-hidden",
+              isSelected && "fixed top-12 z-20 h-auto overflow-scroll",
             )}
             // bg-[#1c1c1e]
             style={{ y }}
