@@ -13,7 +13,7 @@ interface Constraints {
 
 // Absolute distance a wheel scroll event can travel outside of
 // the defined constraints before we fire a "snap back" animation
-const deltaThreshold = 5;
+const deltaThreshold = 3;
 
 // If wheel event fires beyond constraints, multiple the delta by this amount
 // const elasticFactor = 0.2;
@@ -56,6 +56,8 @@ function springTo(value: MotionValue, from: number, to: number) {
   });
 }
 
+let isDebounced = false;
+
 // const debouncedSpringTo = debounce(springTo, 100);
 
 const debouncedSpringTo = debounce(
@@ -93,47 +95,58 @@ export function useWheelScroll(
   isActive: boolean,
 ) {
   const onWheel = (event: WheelEvent) => {
-    event.preventDefault();
+    if (isActive) {
+      event.preventDefault();
 
-    const currentY = y.get();
-    let newY = currentY - event.deltaY;
-    let startedAnimation = false;
-    const isWithinBounds =
-      constraints && newY >= constraints.top && newY <= constraints.bottom;
+      const currentY = y.get();
+      let newY = currentY - event.deltaY;
+      let startedAnimation = false;
+      const isWithinBounds =
+        constraints && newY >= constraints.top && newY <= constraints.bottom;
 
-    if (constraints && !isWithinBounds) {
-      newY = mix(currentY, newY, elasticFactor);
+      if (constraints && !isWithinBounds) {
+        newY = mix(currentY, newY, elasticFactor);
 
-      // If user scrolls past the top constraint
-      if (newY < constraints.top) {
-        if (event.deltaY <= deltaThreshold) {
-          y.set(constraints.top);
-          startedAnimation = true;
-        } else {
-          debouncedSpringTo(y, constraints.top);
+        // If user scrolls below the bottom boundary
+        if (newY < constraints.top) {
+          if (event.deltaY <= deltaThreshold) {
+            y.set(constraints.top);
+            startedAnimation = true;
+          } else {
+            isDebounced = true;
+            debouncedSpringTo(y, constraints.top);
+          }
+        }
+
+        // If user scrolls above the top boundary
+        if (newY > constraints.bottom) {
+          if (event.deltaY >= -deltaThreshold) {
+            y.set(constraints.bottom);
+            startedAnimation = true;
+          } else {
+            isDebounced = true;
+            debouncedSpringTo(y, constraints.bottom);
+          }
         }
       }
 
-      // If user scrolls under the bottom constrait
-      if (newY > constraints.bottom) {
-        if (event.deltaY >= -deltaThreshold) {
-          y.set(constraints.bottom);
-          startedAnimation = true;
-        } else {
-          debouncedSpringTo(y, constraints.bottom);
-        }
+      if (!startedAnimation) {
+        y.stop();
+        y.set(newY);
+      } else {
+        debouncedSpringTo.cancel();
       }
-    }
 
-    if (!startedAnimation) {
-      y.stop();
-      y.set(newY);
+      onWheelCallback(event);
     } else {
-      debouncedSpringTo.cancel();
+      // This is to ensure that its doesnt scroll to the boundary when it is closed.
+      // Especially when scrolling down past the bottom boundary
+      if (isDebounced) {
+        debouncedSpringTo.cancel();
+        isDebounced = false;
+      }
     }
-
-    onWheelCallback(event);
   };
 
-  useDomEvent(ref, "wheel", isActive && onWheel, { passive: false });
+  useDomEvent(ref, "wheel", onWheel, { passive: false });
 }
