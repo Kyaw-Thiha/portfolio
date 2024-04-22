@@ -1,7 +1,7 @@
 import { IGTools } from "./IGTools";
 import { BookKay } from "./BookKay";
 import { IIPFunFair } from "./IIPFunFair";
-import { Portfolio } from "./Portfolio";
+import { Portfolio } from "./Portfolio(Old)";
 import { IIPWebsite } from "./IIPWebsite";
 import { IIPAdminWebsite } from "./IIPAdminWebsite";
 

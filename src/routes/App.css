@@ -238,6 +238,7 @@ p {
   padding: 3px;
   border-radius: 5px;
   border: 3px solid black;
+  margin: 4px 0;
 }
 
 .project-detail > section {
