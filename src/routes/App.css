@@ -130,11 +130,6 @@ li {
   max-width: 300px;
 }
 
-h2 {
-  color: #fff;
-  margin: 8px 0;
-}
-
 .category {
   color: #fff;
   font-size: 14px;
@@ -206,5 +201,70 @@ p {
 
   .card-content-container.open {
     padding: 0;
+  }
+}
+
+/* Styling for the project string to html renders */
+.project-detail {
+  margin-top: 32px;
+}
+
+.project-detail > h2 {
+  margin-top: 16px;
+  font-size: 32px;
+}
+
+.project-detail > h3 {
+  font-weight: 400;
+  font-size: 28px;
+  margin-top: 32px;
+  margin-bottom: 8px;
+}
+
+.project-detail > p {
+  font-size: 20px;
+  text-align: justify;
+  font-weight: 300;
+}
+
+.project-detail > ul li {
+  margin: 10px 0;
+}
+
+.project-detail > img {
+  /* max-width: 800px; */
+  max-width: 100%;
+  max-height: 400px;
+  padding: 3px;
+  border-radius: 5px;
+  border: 3px solid black;
+}
+
+.project-detail > section {
+  margin-bottom: 12px;
+}
+
+.project-technologies {
+  h2 {
+    font-size: 32px;
+  }
+
+  .project-technologies-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    span {
+      border: 1px solid black;
+      border-radius: 25px;
+      padding: 3px 8px;
+      margin: 50px 5px;
+      transition: 0.4s;
+    }
+
+    span:hover {
+      color: white;
+      background-color: black;
+    }
   }
 }
