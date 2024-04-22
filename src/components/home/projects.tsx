@@ -12,7 +12,7 @@ export function Projects() {
   const { id } = useParams();
   const data = projects.map((project) => {
     const lowerName = project.name.toLocaleLowerCase();
-    const id = lowerName.replace(" ", "-");
+    const id = lowerName.split(" ").join("-");
 
     return { id: id, pointOfInterest: 0, ...project };
   });
