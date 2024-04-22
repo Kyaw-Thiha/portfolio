@@ -1,28 +1,20 @@
 import { memo, useEffect, useRef } from "react";
-import {
-  ResolvedValues,
-  motion,
-  useMotionValue,
-  useSpring,
-} from "framer-motion";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 import { Link, useNavigate } from "react-router-dom";
-import { ContentPlaceholder } from "./ContentPlaceholder";
+import { Text } from "./Text";
 import { Title } from "./Title";
 import { Image } from "./Image";
 import { openSpring, closeSpring } from "./animations";
 import { useScrollConstraints } from "@/utils/use-scroll-constraints";
-import { useWheelScroll } from "@/utils/use-wheel-scroll";
+import { debouncedSpringTo, useWheelScroll } from "@/utils/use-wheel-scroll";
 import { cn } from "@/utils/cn";
 import { SquareChevronLeftIcon } from "lucide-react";
+import { Project } from "@/data/models";
 
-export interface CardData {
+interface ProjectType extends Project {}
+interface Props extends ProjectType {
   id: string;
-  title: string;
   pointOfInterest: number;
-  backgroundColor: string;
-}
-
-interface Props extends CardData {
   isSelected: boolean;
 }
 
@@ -31,7 +23,7 @@ interface Props extends CardData {
 const dismissDistance = 50;
 
 const Card = memo(
-  ({ isSelected, id, title, pointOfInterest }: Props) => {
+  (props: Props) => {
     const val = useMotionValue(0);
     // const zIndex = useMotionValue(isSelected ? 2 : 0);
 
@@ -45,10 +37,10 @@ const Card = memo(
 
     // We'll use the opened card element to calculate the scroll constraints
     const cardRef = useRef(null);
-    const constraints = useScrollConstraints(cardRef, isSelected);
+    const constraints = useScrollConstraints(cardRef, props.isSelected);
 
     const exitSelection = () => {
-      isSelected = false;
+      debouncedSpringTo.cancel();
       navigate("/");
       y.set(constraints.bottom);
     };
@@ -62,7 +54,7 @@ const Card = memo(
     }
 
     useEffect(() => {
-      const handleEsc = (event) => {
+      const handleEsc = (event: KeyboardEvent) => {
         if (event.key === "Escape") {
           exitSelection();
         }
@@ -91,54 +83,59 @@ const Card = memo(
       y,
       constraints,
       checkSwipeToDismiss,
-      isSelected,
+      props.isSelected,
     );
 
     return (
       <li ref={containerRef} className={`card`}>
-        <Overlay isSelected={isSelected} onExit={exitSelection} />
+        <Overlay isSelected={props.isSelected} onExit={exitSelection} />
         <div
           className={cn(
             "pointer-events-none relative block h-full w-full",
-            isSelected && "fixed bottom-0 left-0 right-0 top-0 z-10  ",
+            props.isSelected && "fixed bottom-0 left-0 right-0 top-0 z-10",
           )}
         >
           <motion.div
             ref={cardRef}
             className={cn(
               "pointer-events-auto relative mx-0 my-auto h-full w-full overflow-hidden px-8 py-4 backdrop-blur-xl",
-              isSelected && "fixed top-12 z-20 h-auto overflow-scroll",
+              props.isSelected && "fixed top-12 z-20 h-auto",
             )}
-            // bg-[#1c1c1e]
             style={{ y }}
             initial={{ borderRadius: 24 }}
-            layout
-            transition={isSelected ? openSpring : closeSpring}
-            drag={isSelected ? "y" : false}
-            dragConstraints={constraints}
-            onDrag={checkSwipeToDismiss}
+            // layout
+            transition={props.isSelected ? openSpring : closeSpring}
+            // drag={isSelected ? "y" : false}
+            // dragConstraints={constraints}
+            // onDrag={checkSwipeToDismiss}
             // onUpdate={checkZIndex}
           >
             <motion.div layout>
-              {isSelected && (
+              {props.isSelected && (
                 <SquareChevronLeftIcon
                   className="fixed z-10 h-12 w-12 cursor-pointer text-white"
                   onClick={() => exitSelection()}
                 />
               )}
+
+              {!props.isSelected && (
+                <h2 className="mb-4 text-center text-2xl font-medium">
+                  {props.name}
+                </h2>
+              )}
               <Image
-                id={id}
-                isSelected={isSelected}
-                pointOfInterest={pointOfInterest}
+                imgSrc={props.image}
+                isSelected={props.isSelected}
+                pointOfInterest={props.pointOfInterest}
               />
-              <Title title={title} isSelected={isSelected} />
-              <ContentPlaceholder />
+              <Title title={props.name} isSelected={props.isSelected} />
+              <Text text={props.detail} />
             </motion.div>
           </motion.div>
         </div>
-        {!isSelected && (
+        {!props.isSelected && (
           <Link
-            to={`/projects/${id}`}
+            to={`/projects/${props.id}`}
             className="absolute bottom-0 left-0 right-0 top-0"
           />
         )}

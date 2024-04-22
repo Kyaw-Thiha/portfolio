@@ -1,54 +1,33 @@
-import React from "react";
-import { CardList } from "./card-list";
+import Card from "@/components/ui/card";
+import { projects } from "@/data/projects";
+import { useParams } from "react-router-dom";
+
+export interface CardData {
+  id: string;
+  name: string;
+  pointOfInterest: number;
+}
 
 export function Projects() {
-  // const projects = [
-  //   {
-  //     name: "IIP Website",
-  //     description: "School Website",
-  //     url: "",
-  //     imgURL: "/projects/IIPWebsite/IIPWebsite.png",
-  //   },
-  // ];
+  const { id } = useParams();
+  const data = projects.map((project) => {
+    const lowerName = project.name.toLocaleLowerCase();
+    const id = lowerName.replace(" ", "-");
+
+    return { id: id, pointOfInterest: 0, ...project };
+  });
 
   return (
     <div className="p-10">
       <h2 className="mb-8 mt-4 text-center text-3xl font-semibold text-black dark:text-white">
         My Projects
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-3">
-        {/* {projects.map((project, index) => {
-          return (
-            <ProjectCard
-              key={index}
-              index={index}
-              name={project.name}
-              description={project.description}
-              url={project.url}
-              imgURL={project.imgURL}
-            />
-          );
-        })} */}
-      </div>
-      <CardList />
+      {/* <div className="grid grid-cols-1 md:grid-cols-3"></div> */}
+      <ul className="card-list w-full">
+        {data.map((card) => (
+          <Card key={card.id} isSelected={id === card.id} {...card} />
+        ))}
+      </ul>
     </div>
   );
 }
-
-// interface ProjectCardProps {
-//   index: number;
-//   name: string;
-//   description: string;
-//   url: string;
-//   imgURL: string;
-// }
-// const ProjectCard: React.FC<ProjectCardProps> = (props) => {
-//   return (
-//     <div className="relative rounded-xl px-4 py-4">
-//       <img className="rounded-lg" src={props.imgURL} alt={`${props.name}`} />
-//       <h2 className="absolute bottom-4 left-1/2 w-full bg-blue-50">
-//         {props.name}
-//       </h2>
-//     </div>
-//   );
-// };

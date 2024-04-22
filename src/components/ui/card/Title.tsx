@@ -11,12 +11,14 @@ export const Title = ({ title, isSelected }: TitleProps) => {
 
   return (
     <motion.div
-      className="mb-12 text-center text-2xl"
-      initial={false}
+      className="mb-12 text-center text-2xl text-white"
+      // initial={false}
+      initial={{ x, y }}
       animate={{ x, y }}
       transition={isSelected ? openSpring : closeSpring}
       transformTemplate={scaleTranslate}
       style={{ originX: 0, originY: 0 }}
+      layout
     >
       <h2>{title}</h2>
     </motion.div>

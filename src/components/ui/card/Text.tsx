@@ -1,12 +1,22 @@
 import * as React from "react";
 // import { LoremIpsum } from "react-lorem-ipsum";
 import { motion } from "framer-motion";
+// import parse from "html-react-parser";
 
-export const ContentPlaceholder = React.memo(() => {
+interface Props {
+  text: string;
+}
+export const Text = React.memo(({ text }: Props) => {
   return (
-    <motion.div className="text-white" style={{ originY: 0, originX: 0 }}>
-      {/* <LoremIpsum p={6} avgWordsPerSentence={6} avgSentencesPerParagraph={4} /> */}
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+    // <motion.div className="mb-40 text-white" style={{ originY: 0, originX: 0 }}>
+
+    <motion.div className="mb-40 text-white" layout>
+      <div
+        className="project-detail"
+        dangerouslySetInnerHTML={{ __html: text }}
+      />
+      {/* {parse(text)} */}
+      {/* Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua. Dignissim enim sit
       amet venenatis urna cursus eget nunc. Pellentesque pulvinar pellentesque
       habitant morbi tristique senectus et netus. Sit amet volutpat consequat
@@ -56,9 +66,9 @@ export const ContentPlaceholder = React.memo(() => {
       lobortis mattis aliquam faucibus. Nec feugiat in fermentum posuere urna
       nec tincidunt. Vitae sapien pellentesque habitant morbi tristique. Diam
       sit amet nisl suscipit adipiscing bibendum est. In pellentesque massa
-      placerat duis. Tellus elementum sagittis vitae et.
+      placerat duis. Tellus elementum sagittis vitae et. */}
     </motion.div>
   );
 });
 
-ContentPlaceholder.displayName = "ContentPlaceholder";
+Text.displayName = "ContentPlaceholder";

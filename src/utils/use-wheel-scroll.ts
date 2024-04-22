@@ -1,6 +1,5 @@
 import { RefObject } from "react";
 import { useDomEvent, MotionValue } from "framer-motion";
-import { animate, spring } from "popmotion";
 import { mix } from "@popmotion/popcorn";
 
 import pkg from "lodash";
@@ -19,48 +18,7 @@ const deltaThreshold = 3;
 // const elasticFactor = 0.2;
 const elasticFactor = 0.8;
 
-function springTo(value: MotionValue, from: number, to: number) {
-  if (value.isAnimating()) return;
-
-  // value.start((complete) => {
-  //   const animation = spring({
-  //     from,
-  //     to,
-  //     velocity: value.getVelocity(),
-  //     stiffness: 400,
-  //     damping: 40,
-  //   }).start({
-  //     update: (v: number) => value.set(v),
-  //     complete,
-  //   });
-
-  //   return () => animation.stop();
-  // });
-
-  value.on("change", () => {
-    const animation = animate({
-      from,
-      to,
-      velocity: value.getVelocity(),
-      stiffness: 400,
-      damping: 40,
-      type: "spring",
-      onUpdate(latest) {
-        if (latest == value.get()) {
-          value.set(latest);
-        }
-      },
-    });
-
-    return () => animation.stop();
-  });
-}
-
-let isDebounced = false;
-
-// const debouncedSpringTo = debounce(springTo, 100);
-
-const debouncedSpringTo = debounce(
+export const debouncedSpringTo = debounce(
   (value: MotionValue, to: number) => value.set(to),
   100,
 );
@@ -113,7 +71,6 @@ export function useWheelScroll(
             y.set(constraints.top);
             startedAnimation = true;
           } else {
-            isDebounced = true;
             debouncedSpringTo(y, constraints.top);
           }
         }
@@ -124,7 +81,6 @@ export function useWheelScroll(
             y.set(constraints.bottom);
             startedAnimation = true;
           } else {
-            isDebounced = true;
             debouncedSpringTo(y, constraints.bottom);
           }
         }
@@ -132,21 +88,16 @@ export function useWheelScroll(
 
       if (!startedAnimation) {
         y.stop();
-        y.set(newY);
+        y.set(newY - 80);
       } else {
         debouncedSpringTo.cancel();
       }
 
       onWheelCallback(event);
-    } else {
-      // This is to ensure that its doesnt scroll to the boundary when it is closed.
-      // Especially when scrolling down past the bottom boundary
-      if (isDebounced) {
-        debouncedSpringTo.cancel();
-        isDebounced = false;
-      }
     }
   };
 
-  useDomEvent(ref, "wheel", onWheel, { passive: false });
+  useDomEvent(ref, "wheel", onWheel as unknown as EventListener, {
+    passive: false,
+  });
 }
