@@ -53,7 +53,7 @@ export function useWheelScroll(
   isActive: boolean,
 ) {
   const onWheel = (event: WheelEvent) => {
-    const scrollSpeedModifier = 1.08;
+    const scrollSpeedModifier = 100;
     if (isActive) {
       event.preventDefault();
 
@@ -89,7 +89,14 @@ export function useWheelScroll(
 
       if (!startedAnimation) {
         y.stop();
-        y.set(newY * scrollSpeedModifier);
+
+        // When scrolling down, amplify the scroll speed
+        if (newY < y.get()) {
+          y.set(newY - scrollSpeedModifier);
+        } else {
+          // When scrolling up, amplify the scroll speed
+          y.set(newY + scrollSpeedModifier);
+        }
       } else {
         debouncedSpringTo.cancel();
       }
