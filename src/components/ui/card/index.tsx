@@ -78,13 +78,13 @@ const Card = memo(
 
     // When this card is selected, attach a wheel event listener
     const containerRef = useRef(null);
-    useWheelScroll(
-      containerRef,
-      y,
-      constraints,
-      checkSwipeToDismiss,
-      props.isSelected,
-    );
+    //useWheelScroll(
+      //containerRef,
+      //y,
+      //constraints,
+      //checkSwipeToDismiss,
+      //props.isSelected,
+    //);
 
     return (
       <li ref={containerRef} className={`card`}>
@@ -98,8 +98,8 @@ const Card = memo(
           <motion.div
             ref={cardRef}
             className={cn(
-              "pointer-events-auto relative mx-0 my-auto h-full w-full overflow-hidden px-8 py-4 backdrop-blur-xl",
-              props.isSelected && "fixed top-12 z-20 h-auto",
+              "pointer-events-auto relative mx-0 my-auto h-full w-full overflow-hidden x-8 py-4 backdrop-blur-xl",
+              props.isSelected && "fixed top-12 z-20 overflow-scroll",
             )}
             style={{ y }}
             initial={{ borderRadius: 24 }}
@@ -113,7 +113,7 @@ const Card = memo(
             <motion.div layout>
               {props.isSelected && (
                 <SquareChevronLeftIcon
-                  className="fixed z-10 h-12 w-12 cursor-pointer text-white"
+                  className="ml-2 md:ml-20 md:fixed mb-2 z-10 h-12 w-12 cursor-pointer text-white"
                   onClick={() => exitSelection()}
                 />
               )}

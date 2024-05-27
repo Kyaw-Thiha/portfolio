@@ -8,32 +8,33 @@ import ErrorPage from "./routes/error.tsx";
 import App from "./routes/App.tsx";
 import { AnimatePresence } from "framer-motion";
 
+
 const router = createBrowserRouter([
-  {
-    // path: "/",
-    element: <Root />,
-    errorElement: <ErrorPage />,
-    children: [
-      {
-        path: "/",
-        element: <App />,
-      },
-      {
-        path: "/projects/:id",
-        element: <App />,
-      },
-      // {
-      //   path: "contacts/:contactId",
-      //   element: <Contact />,
-      // },
-    ],
-  },
+    {
+        // path: "/",
+        element: <Root />,
+        errorElement: <ErrorPage />,
+        children: [
+            {
+                path: "/",
+                element: <App />,
+            },
+            {
+                path: "/projects/:id",
+                element: <App />,
+            },
+            // {
+            //   path: "contacts/:contactId",
+            //   element: <Contact />,
+            // },
+        ],
+    },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
-    <AnimatePresence>
-      <RouterProvider router={router} />
-    </AnimatePresence>
-  </React.StrictMode>,
+    <React.StrictMode>
+            <AnimatePresence>
+                <RouterProvider router={router} />
+            </AnimatePresence>
+    </React.StrictMode>,
 );
