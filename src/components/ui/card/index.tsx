@@ -6,7 +6,7 @@ import { Title } from "./Title";
 import { Image } from "./Image";
 import { openSpring, closeSpring } from "./animations";
 import { useScrollConstraints } from "@/utils/use-scroll-constraints";
-import { debouncedSpringTo, useWheelScroll } from "@/utils/use-wheel-scroll";
+import { debouncedSpringTo, /*useWheelScroll */} from "@/utils/use-wheel-scroll";
 import { cn } from "@/utils/cn";
 import { SquareChevronLeftIcon } from "lucide-react";
 import { Project } from "@/data/models";
@@ -20,7 +20,7 @@ interface Props extends ProjectType {
 
 // Distance in pixels a user has to scroll a card down before we recognise
 // a swipe-to dismiss action.
-const dismissDistance = 50;
+//const dismissDistance = 50;
 
 const Card = memo(
   (props: Props) => {
@@ -45,13 +45,13 @@ const Card = memo(
       y.set(constraints.bottom);
     };
 
-    function checkSwipeToDismiss() {
-      if (y.get() > constraints.bottom) {
-        exitSelection();
-      } else if (y.get() < constraints.top - dismissDistance) {
-        exitSelection();
-      }
-    }
+    //function checkSwipeToDismiss() {
+      //if (y.get() > constraints.bottom) {
+       // exitSelection();
+      //} else if (y.get() < constraints.top - dismissDistance) {
+       // exitSelection();
+      //}
+    //}
 
     useEffect(() => {
       const handleEsc = (event: KeyboardEvent) => {
@@ -78,13 +78,13 @@ const Card = memo(
 
     // When this card is selected, attach a wheel event listener
     const containerRef = useRef(null);
-    //useWheelScroll(
-      //containerRef,
-      //y,
-      //constraints,
-      //checkSwipeToDismiss,
-      //props.isSelected,
-    //);
+    // useWheelScroll(
+    // containerRef,
+    // y,
+    // constraints,
+    // checkSwipeToDismiss,
+    // props.isSelected,
+    // );
 
     return (
       <li ref={containerRef} className={`card`}>
@@ -98,7 +98,7 @@ const Card = memo(
           <motion.div
             ref={cardRef}
             className={cn(
-              "pointer-events-auto relative mx-0 my-auto h-full w-full overflow-hidden x-8 py-4 backdrop-blur-xl",
+              "pointer-events-auto relative scroll-m-0 mx-0 my-auto h-full w-full overflow-hidden x-8 py-4 backdrop-blur-xl",
               props.isSelected && "fixed top-12 z-20 overflow-scroll",
             )}
             style={{ y }}
