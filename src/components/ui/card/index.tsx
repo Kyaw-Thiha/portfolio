@@ -37,12 +37,16 @@ const Card = memo(
 
         // We'll use the opened card element to calculate the scroll constraints
         const cardRef = useRef(null);
-        const constraints = useScrollConstraints(cardRef, props.isSelected);
+        // const constraints = useScrollConstraints(cardRef, props.isSelected);
 
         const exitSelection = () => {
             debouncedSpringTo.cancel();
             navigate("/");
-            y.set(constraints.bottom);
+            // y.set(constraints.bottom);
+
+            if (cardRef.current) {
+                cardRef.current.scrollTop = 0
+            }
         };
 
         //function checkSwipeToDismiss() {
