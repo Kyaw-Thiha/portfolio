@@ -3,15 +3,20 @@ import { AboutMe } from "@/components/home/about-me";
 import { Projects } from "@/components/home/projects";
 
 import "./App.css";
+import useWindowDimensions from "@/utils/use-window-dimensions";
 
 function App() {
-  return (
-    <main>
-      <Hero />
-      <AboutMe />
-      <Projects />
-    </main>
-  );
+    const { width } = useWindowDimensions();
+    const mobileBreakpoint = 480
+
+    return (
+        <main>
+            <Hero />
+            { width > mobileBreakpoint && <AboutMe /> }
+            <Projects />
+            { width <= mobileBreakpoint && <AboutMe /> }
+        </main>
+    );
 }
 
 export default App;

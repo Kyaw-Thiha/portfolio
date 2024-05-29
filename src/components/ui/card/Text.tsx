@@ -71,4 +71,4 @@ export const Text = React.memo(({ text }: Props) => {
     );
 });
 
-Text.displayName = "ContentPlaceholder";
+Text.displayName = "CardText";

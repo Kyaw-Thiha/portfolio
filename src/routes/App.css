@@ -87,7 +87,7 @@ li {
   overflow: hidden;
   padding: 40px 0;
 } */
-/* 
+/*
 .card-content {
   pointer-events: auto;
   position: relative;
@@ -268,4 +268,20 @@ p {
       background-color: black;
     }
   }
+}
+
+@media only screen and (max-width: 480px) {
+ .project-detail > h2 {
+        font-size: 24px;
+    }
+
+ .project-detail > h3 {
+        font-size: 20px;
+        margin-top: 12px;
+    }
+
+ .project-detail > p {
+        font-size: 18px;
+        text-align: left;
+    }
 }

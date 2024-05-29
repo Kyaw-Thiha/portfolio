@@ -91,7 +91,7 @@ const Card = memo(
         // props.isSelected,
         // );
         return (
-            <li ref={containerRef} className="relative h-[460px] max-w-[40%} p-[12px]">
+            <li ref={containerRef} className="relative h-[360px] md:h-[460px] max-w-[40%} p-[12px]">
                 <Overlay isSelected={props.isSelected} onExit={exitSelection} />
                 <div
                     className={cn(
@@ -117,7 +117,7 @@ const Card = memo(
                         <motion.div layout>
                             {props.isSelected && (
                                 <SquareChevronLeftIcon
-                                    className="ml-2 md:ml-20 md:fixed mb-2 z-10 h-12 w-12 cursor-pointer text-white"
+                                    className="ml-2 xl:ml-20 xl:fixed mb-2 z-10 h-12 w-12 cursor-pointer text-white"
                                     onClick={() => exitSelection()}
                                 />
                             )}
