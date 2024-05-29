@@ -23,7 +23,7 @@ export function Projects() {
                 My Projects
             </h2>
             {/* <div className="grid grid-cols-1 md:grid-cols-3"></div> */}
-            <ul className="card-list w-full">
+            <ul className="grid grid-cols-1 md:grid-cols-2 w-full">
                 {data.map((card) => (
                     <Card key={card.id} isSelected={id === card.id} {...card} />
                 ))}

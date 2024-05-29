@@ -14,12 +14,12 @@ export const Image = ({
 }: ImageProps) => {
   return (
     <motion.div
-      className="left-0 top-0 w-screen overflow-hidden backdrop-blur-xl"
-      style={{ /*backgroundColor,*/ originX: 0, originY: 0 }}
+      className="ml-0 xl:ml-16 left-0 top-0 w-screen overflow-hidden backdrop-blur-xl"
+      style={{ /*backgroundColor,*/ originX: 0, originY: 0  }}
       layout
     >
       <motion.img
-        className={cn("h-[240px] md:h-[480px] rounded-xl", isSelected && "mx-auto mt-4")}
+        className={cn("w-[540px] rounded-xl", isSelected && "mx-auto mt-4 w-[960px]")}
         src={imgSrc}
         alt=""
         initial={false}

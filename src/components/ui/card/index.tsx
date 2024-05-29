@@ -5,7 +5,7 @@ import { Text } from "./Text";
 import { Title } from "./Title";
 import { Image } from "./Image";
 import { openSpring, closeSpring } from "./animations";
-import { useScrollConstraints } from "@/utils/use-scroll-constraints";
+// import { useScrollConstraints } from "@/utils/use-scroll-constraints";
 import { debouncedSpringTo, /*useWheelScroll */ } from "@/utils/use-wheel-scroll";
 import { cn } from "@/utils/cn";
 import { HomeIcon, SquareChevronLeftIcon } from "lucide-react";
@@ -45,6 +45,7 @@ const Card = memo(
             // y.set(constraints.bottom);
 
             if (cardRef.current) {
+                // @ts-ignore
                 cardRef.current.scrollTop = 0
             }
         };
@@ -89,9 +90,8 @@ const Card = memo(
         // checkSwipeToDismiss,
         // props.isSelected,
         // );
-
         return (
-            <li ref={containerRef} className={`card`}>
+            <li ref={containerRef} className="relative h-[460px] max-w-[40%} p-[12px]">
                 <Overlay isSelected={props.isSelected} onExit={exitSelection} />
                 <div
                     className={cn(
