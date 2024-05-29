@@ -21,7 +21,8 @@
     "react-dom": "^18.2.0",
     "react-hero-animation": "^0.2.2",
     "react-router-dom": "^6.22.3",
-    "tailwind-merge": "^2.2.2"
+    "tailwind-merge": "^2.2.2",
+    "tailwind-scrollbar-hide": "^1.1.7"
   },
   "devDependencies": {
     "@types/lodash": "^4.17.0",

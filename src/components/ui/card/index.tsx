@@ -98,7 +98,7 @@ const Card = memo(
                     <motion.div
                         ref={cardRef}
                         className={cn(
-                            "pointer-events-auto relative scroll-m-0 mx-0 my-auto h-full w-full overflow-hidden x-8 py-4 backdrop-blur-xl",
+                            "pointer-events-auto relative scrollbar-hide mx-0 my-auto h-full w-full overflow-hidden x-8 py-4 backdrop-blur-xl",
                             props.isSelected && "fixed top-12 z-20 overflow-scroll",
                         )}
                         style={{ y }}
