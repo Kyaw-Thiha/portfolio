@@ -4,21 +4,21 @@ import { motion } from "framer-motion";
 // import parse from "html-react-parser";
 
 interface Props {
-  text: string;
+    text: string;
 }
 export const Text = React.memo(({ text }: Props) => {
-  return (
-    // <motion.div className="mb-40 text-white" style={{ originY: 0, originX: 0 }}>
+    return (
+        // <motion.div className="mb-40 text-white" style={{ originY: 0, originX: 0 }}>
 
-    <motion.div className="mb-40 mx-4 md:mx-20 md:8 text-white" layout>
-      <div
-        className="project-detail"
-        dangerouslySetInnerHTML={{ __html: text }}
-      />
-      {/* {parse(text)} */}
-      {/* Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        <motion.div className="mb-20 mx-4 md:mx-20 text-white" layout>
+            <div
+                className="project-detail"
+                dangerouslySetInnerHTML={{ __html: text }}
+            />
+            {/* {parse(text)} */}
+            {/* Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua. Dignissim enim sit
-      amet venenatis urna cursus eget nunc. Pellentesque pulvinar pellentesque
+      amet venenatis urna cursus eget nunc. Pellentesque pulvinar pellentesqu
       habitant morbi tristique senectus et netus. Sit amet volutpat consequat
       mauris. Hac habitasse platea dictumst quisque sagittis. Elementum eu
       facilisis sed odio morbi quis. Integer eget aliquet nibh praesent
@@ -67,8 +67,8 @@ export const Text = React.memo(({ text }: Props) => {
       nec tincidunt. Vitae sapien pellentesque habitant morbi tristique. Diam
       sit amet nisl suscipit adipiscing bibendum est. In pellentesque massa
       placerat duis. Tellus elementum sagittis vitae et. */}
-    </motion.div>
-  );
+        </motion.div>
+    );
 });
 
 Text.displayName = "ContentPlaceholder";
