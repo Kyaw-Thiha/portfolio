@@ -91,7 +91,7 @@ const Card = memo(
         // props.isSelected,
         // );
         return (
-            <li ref={containerRef} className="relative h-[360px] md:h-[460px] max-w-[40%} p-[12px]">
+            <li ref={containerRef} className="relative h-[360px] w-full p-3 md:h-[460px] md:p-[12px]">
                 <Overlay isSelected={props.isSelected} onExit={exitSelection} />
                 <div
                     className={cn(
@@ -102,7 +102,7 @@ const Card = memo(
                     <motion.div
                         ref={cardRef}
                         className={cn(
-                            "pointer-events-auto relative scrollbar-hide mx-0 my-auto h-full w-full overflow-hidden x-8 py-4 backdrop-blur-xl",
+                            "pointer-events-auto relative scrollbar-hide mx-0 my-auto h-full w-full overflow-hidden rounded-3xl border border-slate-200/60 bg-white/80 px-4 py-4 backdrop-blur-lg transition-colors duration-300 dark:border-[#414868] dark:bg-[#1f2335]/90",
                             props.isSelected && "fixed top-12 z-20 overflow-scroll",
                         )}
                         style={{ y }}
@@ -117,7 +117,7 @@ const Card = memo(
                         <motion.div layout>
                             {props.isSelected && (
                                 <SquareChevronLeftIcon
-                                    className="ml-2 xl:ml-20 xl:fixed mb-2 z-10 h-12 w-12 cursor-pointer text-white"
+                                    className="ml-2 mb-2 z-10 h-12 w-12 cursor-pointer text-slate-900 transition-colors duration-300 xl:fixed xl:ml-20 dark:text-[#c0caf5]"
                                     onClick={() => exitSelection()}
                                 />
                             )}
@@ -134,8 +134,8 @@ const Card = memo(
                             />
                             <Title title={props.name} isSelected={props.isSelected} />
                             <Text text={props.detail} />
-                            <div className="mx-4 md:mx-20 mb-40 flex justify-end">
-                                <div className="border-4 text-white rounded-lg flex gap-2 p-2 cursor-pointer" onClick={() => exitSelection()}>
+                            <div className="mx-4 mb-40 flex justify-end md:mx-20">
+                                <div className="flex cursor-pointer gap-2 rounded-lg border-2 border-slate-900/20 p-2 text-slate-900 transition-colors duration-300 hover:border-slate-900/40 dark:border-[#414868] dark:text-[#c0caf5] dark:hover:border-[#7aa2f7]" onClick={() => exitSelection()}>
                                     Return to <HomeIcon />
                                 </div>
                             </div>

@@ -10,7 +10,7 @@ export const Text = React.memo(({ text }: Props) => {
     return (
         // <motion.div className="mb-40 text-white" style={{ originY: 0, originX: 0 }}>
 
-        <motion.div className="mb-20 mx-4 md:mx-20 text-white" layout>
+        <motion.div className="mx-4 mb-20 text-slate-800 md:mx-20 dark:text-[#c0caf5]" layout>
             <div
                 className="project-detail"
                 dangerouslySetInnerHTML={{ __html: text }}

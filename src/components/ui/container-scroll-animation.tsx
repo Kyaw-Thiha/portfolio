@@ -98,9 +98,9 @@ export const Card = ({
         boxShadow:
           "0 0 #0000004d, 0 9px 20px #0000004a, 0 37px 37px #00000042, 0 84px 50px #00000026, 0 149px 60px #0000000a, 0 233px 65px #00000003",
       }}
-      className="mx-auto -mt-12 h-[30rem] w-full max-w-5xl rounded-[30px] border-4 border-[#6C6C6C] bg-[#222222] p-6 shadow-2xl md:h-[40rem]"
+      className="mx-auto -mt-12 h-[30rem] w-full max-w-5xl rounded-[30px] border border-slate-200/60 bg-white/80 p-6 shadow-2xl backdrop-blur-md transition-colors duration-300 dark:border-[#414868] dark:bg-[#1f2335]/90 md:h-[40rem]"
     >
-      <div className="flex h-full w-full items-start justify-center gap-4 overflow-hidden rounded-2xl bg-gray-100 p-4">
+      <div className="flex h-full w-full items-start justify-center gap-4 overflow-hidden rounded-2xl bg-gray-100/80 p-4 transition-colors duration-300 dark:bg-[#24283b]/80">
         <div>
           <motion.img
             style={{ translateY: translate }}

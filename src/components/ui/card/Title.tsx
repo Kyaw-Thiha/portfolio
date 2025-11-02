@@ -11,7 +11,7 @@ export const Title = ({ title, isSelected }: TitleProps) => {
 
   return (
     <motion.div
-      className="mb-12 text-center text-2xl text-white"
+      className="mb-12 text-center text-2xl text-slate-900 dark:text-[#c0caf5]"
       // initial={false}
       initial={{ x, y }}
       animate={{ x, y }}
